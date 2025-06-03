@@ -2,16 +2,16 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: hello-world-app  
-  namespace: argocd
+  namespace: 15790-webapp 
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/your-user/your-repo'
+    repoURL: 'https://github.com/RevathiBala/helo-world-app'
     targetRevision: main
     path: k8s
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: {rosa-namespace}
+    namespace: default
   syncPolicy:
     automated:
       prune: true

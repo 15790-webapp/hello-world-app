@@ -51,7 +51,7 @@ jobs:
 
     # - name: Commit and push updated manifest
     #   env:
-    #     GIT_TOKEN: ${{ secrets.GHCR_PAT }}
+    #     GIT_TOKEN: ${{ secrets.ROSA_PAT }}
     #   run: |
     #     git config user.name "github-actions"
     #     git config user.email "actions@github.com"
@@ -82,13 +82,13 @@ jobs:
         tar -xzf openshift-client-linux.tar.gz
         sudo mv oc /usr/local/bin
 
-    # - name: Login to OpenShift
-    #   run: |
-    #     oc login --token=${{ secrets.ROSA_TOKEN }} --server=${{ secrets.ROSA_SERVER }}
+    - name: Login to OpenShift
+      run: |
+        oc login --token=${{ secrets.ROSA_TOKEN }} --server=${{ secrets.ROSA_SERVER }}
 
-    # - name: Create or update Argo CD Application
-    #   run: |
-    #     kubectl apply -f argo-app.yaml -n argocd
+    - name: Create or update Argo CD Application
+      run: |
+        kubectl apply -f argo-app.yaml -n hello-world-app
 
     # - name: Deploy to ROSA
     #   run: |
